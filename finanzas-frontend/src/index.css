@@ -1,0 +1,7 @@
+:root{
+    --color-primario: #6f42c1;
+}
+
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
