@@ -1,16 +1,55 @@
 import { Link as RouterLink } from 'react-router-dom'
+import { useEffect } from 'react';
 
 import { Button, Container, Grid, Link, Stack, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useDate } from '../hooks'
-import { PhoneInput } from '../components/PhoneInput';
+import { MuiTelInput } from 'mui-tel-input';
+import Swal from 'sweetalert2';
+
+import { useAuthStore } from '../hooks'
+import { useForm } from '../../hooks';
+
+const registerFormFields = {
+  name:      '',
+  email:     '',
+  password:  '',
+  password2: '',
+}
 
 export const RegisterPage = () => {
 
-  const { date, onHandleDateChange} = useDate();
+  const { startRegister, errorMessage } = useAuthStore();
+  
+  const {
+    name,
+    email,
+    cellphone,
+    birthday,
+    password,
+    password2,
+    onInputChange,
+    onHandleChangePhone,
+    onHandleDateChange
+  } = useForm( registerFormFields );
+
+  const registerSubmit = ( event ) => {
+    event.preventDefault();
+    
+    if( password !== password2 ){
+        Swal.fire('Error en registro', 'Contraseñas no son iguales', 'error');
+        return
+    }
+
+    startRegister({ name,email,password, birthday, cellphone});
+  }
+
+useEffect(() => {
+  if( errorMessage !== undefined ){
+    Swal.fire('Error en la autenticación', errorMessage,'error')
+  }
+}, [errorMessage])
 
   return (
     <Container maxWidth="sm">
@@ -28,13 +67,16 @@ export const RegisterPage = () => {
             <Typography variant='body1' component="span">Welcome back. Please enter your details</Typography>
           </Box>
 
-          <form>
+          <form onSubmit={ registerSubmit }>
 
             <TextField
               fullWidth
               size='small'
               variant='outlined'
               label='Name'
+              value={name || ''}
+              name="name"
+              onChange={onInputChange}
               sx={{mb: 3}}  
               />
 
@@ -43,8 +85,8 @@ export const RegisterPage = () => {
                 <DesktopDatePicker
                   label="Birthday"
                   inputFormat="DD/MM/YYYY"
-                  value={date}
-                  onChange={(event) => onHandleDateChange(event)}
+                  value={birthday || ''}
+                  onChange={onHandleDateChange}
                   renderInput={(params) => <TextField {...  params} size="small" />}
                   />
                 </Stack>
@@ -55,24 +97,44 @@ export const RegisterPage = () => {
               size='small'
               variant='outlined'
               label='Email'
+              value={email || ''}
+              name="email"
+              onChange={onInputChange}
               sx={{mb: 3}}  
             />
 
-            <PhoneInput/>
+            <MuiTelInput
+              size='small'
+              label="Phone"
+              fullWidth
+              name="cellphone"
+              value={cellphone || ''}
+              onChange={onHandleChangePhone}
+              defaultCountry="AR"
+              sx={{mb:3}}
+            />
 
             <TextField
+              type="password"
               fullWidth
               size='small'
               variant='outlined'
               label='Password'
+              value={password || ''}
+              name="password"
+              onChange={onInputChange}
               sx={{mb: 3}}  
             />
 
             <TextField
+              type="password"
               fullWidth
               size='small'
               variant='outlined'
               label='Repeat your password'
+              value={password2 || ''}
+              name="password2"
+              onChange={onInputChange}
               sx={{mb: 3}}  
             />
 

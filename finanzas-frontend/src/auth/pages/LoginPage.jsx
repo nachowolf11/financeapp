@@ -1,8 +1,13 @@
+import { useEffect } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+
 import  Google  from '@mui/icons-material/Google'
 import { Button, Container, Grid, Link, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { Link as RouterLink } from 'react-router-dom'
+
 import { useForm } from '../../hooks'
+import { useAuthStore } from '../hooks/useAuthStore'
+import Swal from 'sweetalert2'
 
 const loginFormFields = {
   email: '',
@@ -11,11 +16,24 @@ const loginFormFields = {
 
 export const LoginPage = () => {
 
+  const { startLogin, errorMessage } = useAuthStore();
+
   const {
     email,
     password,
     onInputChange,
   } = useForm( loginFormFields );
+
+  const onSubmit = ( event ) => {
+    event.preventDefault();
+    startLogin({ email, password });
+  }
+
+  useEffect(() => {
+    if( errorMessage !== undefined ){
+      Swal.fire('Error en la autenticación', errorMessage,'error')
+    }
+  }, [errorMessage])
 
   return (
     <Container maxWidth="sm">
@@ -33,14 +51,14 @@ export const LoginPage = () => {
             <Typography variant='body1' component="span">Welcome back. Please enter your details</Typography>
           </Box>
 
-          <form>
+          <form onSubmit={onSubmit}>
 
               <TextField
                 fullWidth
                 size='small'
                 variant='outlined'
                 label='Email'
-                value={email}
+                value={email || ''}
                 name="email"
                 onChange={onInputChange}
                 sx={{mb: 3}}  
@@ -48,10 +66,11 @@ export const LoginPage = () => {
 
               <TextField
                 fullWidth
+                type="password"
                 size='small'
                 variant='outlined'
                 label='Password'
-                value={password}
+                value={password || ''}
                 name="password"
                 onChange={onInputChange}
                 sx={{mb: 3}}  

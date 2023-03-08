@@ -3,12 +3,12 @@ import { getEnvVariables } from '../helpers'
 
 const { VITE_API_URL } = getEnvVariables();
 
-const calendarApi = axios.create({
+const financeApi = axios.create({
     baseURL: VITE_API_URL
 });
 
 //TODO: Configurar interceptores
-calendarApi.interceptors.request.use( config => {
+financeApi.interceptors.request.use( config => {
 
     config.headers = {
         ...config.headers,
@@ -18,4 +18,4 @@ calendarApi.interceptors.request.use( config => {
     return config;
 });
 
-export default calendarApi;
+export default financeApi;

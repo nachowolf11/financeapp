@@ -1,3 +1,3 @@
-export * from "./pages/FinanzasPage"
+export * from "./pages/FinancePage"
 
-export * from "./routes/FinanzasRoutes"
+export * from "./routes/FinanceRoutes"

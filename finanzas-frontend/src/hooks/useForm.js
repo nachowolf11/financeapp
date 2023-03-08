@@ -12,6 +12,7 @@ formValidations = {
 */
 
 export const useForm = ( initialForm = {}, formValidations = {} ) => {
+
   
     const [ formState, setFormState ] = useState( initialForm );
     const [formValidation, setFormValidation] = useState({});
@@ -21,7 +22,7 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
     }, [ formState ]);
 
     useEffect(() => {
-      setFormState( initialForm );
+            setFormState( initialForm );
     }, [ initialForm ])
     
 
@@ -55,6 +56,22 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         setFormValidation( formCheckedValues );
     }
 
+    //Date Managment
+    const onHandleDateChange = (event) => {
+      setFormState({
+        ...formState,
+        birthday: event
+      })
+    };
+
+    // Phone Management
+    const onHandleChangePhone = (cellphone) => {
+        setFormState({
+            ...formState,
+            cellphone: cellphone
+          })
+    }
+
     return {
         ...formState,
         formState,
@@ -63,5 +80,8 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
 
         ...formValidation,
         isFormValid,
+
+        onHandleDateChange,
+        onHandleChangePhone,
     }
 }

@@ -24,6 +24,7 @@
     "react-phone-number-input": "^3.2.19",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
+    "react-spinners": "^0.13.8",
     "sweetalert2": "^11.7.2"
   },
   "devDependencies": {
