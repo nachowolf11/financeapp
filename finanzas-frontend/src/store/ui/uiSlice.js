@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export const uiSlice = createSlice({
     name: 'ui',
     initialState: {
-        isDrawerOpen: false
+        isDrawerOpen: false,
+        isModalOpen: false,
     },
     reducers: {
         onOpenDrawer: ( state ) => {
@@ -12,8 +13,19 @@ export const uiSlice = createSlice({
         onCloseDrawer: ( state ) => {
             state.isDrawerOpen = false;
         },
+        onOpenModal: ( state ) => {
+            state.isModalOpen = true;
+        },
+        onCloseModal: ( state ) => {
+            state.isModalOpen = false;
+        },
     }
 });
 
 
-export const { onOpenDrawer, onCloseDrawer } = uiSlice.actions;
+export const {
+    onOpenDrawer,
+    onCloseDrawer,
+    onOpenModal,
+    onCloseModal,
+ } = uiSlice.actions;

@@ -5,3 +5,6 @@ export * from "./ListCustomItem"
 export * from "./Movements"
 export * from "./MovementsHeader"
 export * from "./MovementsItem"
+export * from "./AddButton"
+export * from "./MovementModal"
+

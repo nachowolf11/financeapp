@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onOpenDrawer, onCloseDrawer } from "../../store"
+import { onOpenDrawer, onCloseDrawer, onCloseModal, onOpenModal } from "../../store"
 
 export const useUiStore = () => {
 
-    const { isDrawerOpen } = useSelector( state => state.ui );
+    const { isDrawerOpen, isModalOpen } = useSelector( state => state.ui );
     const dispatch = useDispatch();
 
     const openDrawer = () => {
@@ -14,12 +14,23 @@ export const useUiStore = () => {
         dispatch( onCloseDrawer() );
     }
 
+    const openModal = () => {
+        dispatch( onOpenModal() );
+    }
+
+    const closeModal = () => {
+        dispatch( onCloseModal() );
+    }
+
     return{
         // Propiedades
         isDrawerOpen,
+        isModalOpen,
 
         // Metodos
         openDrawer,
         closeDrawer,
+        openModal,
+        closeModal,
     }
 }

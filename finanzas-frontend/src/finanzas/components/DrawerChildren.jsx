@@ -6,11 +6,18 @@ import { Box } from "@mui/system";
 
 import { useAuthStore } from "../../auth/hooks";
 import { ListCustomItem } from "./ListCustomItem";
+import { useUiStore } from '../hooks';
 
 
 export const DrawerChildren = () => {
 
   const { user, startLogout } = useAuthStore();
+
+  const { closeDrawer } = useUiStore();
+
+  const onClick = () => {
+    closeDrawer();
+  }
   
 
   return (
@@ -25,25 +32,25 @@ export const DrawerChildren = () => {
 
         <List sx={{flexGrow: 1}}>
 
-          <Link component={ RouterLink } color="inherit" to="/">
+          <Link component={ RouterLink } onClick={onClick} color="inherit" to="/">
             <ListCustomItem text="Home">
               <Home fontSize="medium" color="secondary"/>
             </ListCustomItem>
           </Link>
 
-          <Link component={ RouterLink } color="inherit" to="/account">
+          <Link component={ RouterLink } onClick={onClick} color="inherit" to="/account">
             <ListCustomItem text="Account">
               <AccountBox fontSize="medium" color="secondary"/>
             </ListCustomItem>
           </Link>
 
-          <Link component={ RouterLink } color="inherit" to="/movements">
+          <Link component={ RouterLink } onClick={onClick} color="inherit" to="/movements">
             <ListCustomItem text="Movements">
               <Timeline fontSize="medium" color="secondary"/>
             </ListCustomItem>
           </Link>
 
-          <Link component={ RouterLink } color="inherit" to="/analysis">
+          <Link component={ RouterLink } onClick={onClick} color="inherit" to="/analysis">
             <ListCustomItem text="Analysis">
               <QueryStats fontSize="medium" color="secondary"/>
             </ListCustomItem>

@@ -2,23 +2,27 @@ import { Divider, ListItem, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { separadorMiles } from '../helpers'
+import { useMovementsStore } from '../hooks/useMovementsStore'
 
-const movement = {
-    description: 'Remera de Los Andes',
-    account_movement_type_id: 1,
-    amount: 50000,
-    category_id: 3,
-    creation_date: '2023-02-02'
-}
+export const MovementsItem = ({movement}) => {
 
-export const MovementsItem = () => {
+    const { setActiveMovementById } = useMovementsStore();
+
+    const onClick = (e) => {
+        setActiveMovementById(e.currentTarget.id)
+    }
+
   return (
     <>
-    <ListItem sx={{p:2}}>
+    <ListItem sx={{p:1}} id={movement.account_movement_id} onClick={onClick}>
         
-        <Box display="flex" justifyContent="space-between" sx={{width:'100%'}}>
+        <Box display="flex" justifyContent="space-between" px={2} sx={{width:'100%'}}>
             
-            <Typography variant='body1'>{movement.description}</Typography>
+            <Box>
+                <Typography variant='body1'>{movement.description}</Typography>
+                <Typography variant='body2'color="grey">{movement.category}</Typography>
+            </Box>
+            
             
             <Box>
                 <Typography 

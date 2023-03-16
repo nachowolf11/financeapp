@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 
 /*
@@ -11,18 +12,22 @@ formValidations = {
   }
 */
 
-export const useForm = ( initialForm = {}, formValidations = {} ) => {
+export const useMovementForm = ( initialForm = {}, formValidations = {} ) => {
 
   
     const [ formState, setFormState ] = useState( initialForm );
     const [formValidation, setFormValidation] = useState({});
+    const [formSubmitted, setFormSubmitted] = useState(false)
+    
 
     useEffect(()=>{
-        createValidators();
+        if(formState){
+            createValidators();
+        }
     }, [ formState ]);
 
     useEffect(() => {
-        setFormState( initialForm );
+            setFormState( initialForm );
     }, [ initialForm ])
     
 
@@ -42,10 +47,6 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         });
     }
 
-    const onResetForm = () => {
-        setFormState( initialForm );
-    }
-
     const createValidators = () => {
         const formCheckedValues = {};
         for (const formField of Object.keys( formValidations )) {
@@ -60,28 +61,21 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
     const onHandleDateChange = (event) => {
       setFormState({
         ...formState,
-        birthday: event
+        creation_date: dayjs(event).format('YYYY/MM/DD')
       })
     };
-
-    // Phone Management
-    const onHandleChangePhone = (cellphone) => {
-        setFormState({
-            ...formState,
-            cellphone: cellphone
-          })
-    }
 
     return {
         ...formState,
         formState,
         onInputChange,
-        onResetForm,
 
         ...formValidation,
         isFormValid,
 
+        formSubmitted,
+        setFormSubmitted,
+
         onHandleDateChange,
-        onHandleChangePhone,
     }
 }

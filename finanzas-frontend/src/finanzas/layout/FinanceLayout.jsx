@@ -12,7 +12,7 @@ export const FinanceLayout = ({children}) => {
     <SideBar drawerWidth={ drawerWidth }/>
 
 
-    <Box 
+    <Box
         component='main'
         sx={{ flexGrow: 1, bgcolor: 'backgrounds.light', minHeight: '100vh'}}
     >

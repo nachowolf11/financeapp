@@ -11,9 +11,11 @@ import Swal from 'sweetalert2';
 import { useAuthStore } from '../hooks'
 import { useForm } from '../../hooks';
 
+
 const registerFormFields = {
   name:      '',
   email:     '',
+  birthday:  new Date(),
   password:  '',
   password2: '',
 }

@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import Swal from "sweetalert2";
 import financeApi from "../../api/financeApi";
 import { clearErrorMessage, onChecking, onGetUser, onLogin, onLogout, onSetLoading, onUpdateUser } from "../../store";
 

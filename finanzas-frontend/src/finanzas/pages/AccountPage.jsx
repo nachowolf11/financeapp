@@ -25,7 +25,9 @@ export const AccountPage = () => {
   }
 
   useEffect(() => {
-    startGetUser();
+    if( !user.email ){
+      startGetUser();
+    }
   }, [])
   
   
