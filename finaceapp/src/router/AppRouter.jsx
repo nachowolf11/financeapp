@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Route, Routes, Navigate } from "react-router-dom"
-import { LoadingPage } from "../../ui"
+import { LoadingPage } from "../ui"
 import { useAuthStore } from "../auth/hooks"
 import { AuthRoutes } from "../auth/routes/AuthRoutes"
 import { useMovementsStore } from "../finanzas/hooks"

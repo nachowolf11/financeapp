@@ -1,7 +1,7 @@
 import { Button, Grid, List, ListItem, ListItemButton } from "@mui/material"
 import { Box } from "@mui/system"
 import { useEffect, useState } from "react"
-import { LoadingPage } from "../../../ui"
+import { LoadingPage } from "../../ui"
 import { Stats } from "../components"
 import { useMovementsStore } from "../hooks"
 import { FinanceLayout } from "../layout/FinanceLayout"

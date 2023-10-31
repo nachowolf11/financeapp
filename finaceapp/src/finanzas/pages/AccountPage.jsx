@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 import { useAuthStore } from '../../auth/hooks'
 import { useForm } from '../../hooks'
 import { FinanceLayout } from '../layout/FinanceLayout'
-import { LoadingPage } from '../../../ui'
+import { LoadingPage } from '../../ui'
 
 export const AccountPage = () => {
 

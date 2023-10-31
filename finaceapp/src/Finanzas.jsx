@@ -4,7 +4,7 @@ import { AppTheme } from "./theme/AppTheme"
 export const Finanzas = () => {
   return (
     <AppTheme>
-      <AppRouter/>
+        <AppRouter/>
     </AppTheme>
   )
 }

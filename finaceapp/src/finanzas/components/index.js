@@ -9,4 +9,5 @@ export * from "./AddButton"
 export * from "./MovementModal"
 export * from "./Stats"
 export * from "./MovButtons"
+export * from "./tutorialComponent/TutorialComponent"
 

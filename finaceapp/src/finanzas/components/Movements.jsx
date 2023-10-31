@@ -1,6 +1,6 @@
 import { Box, Grid, List, Pagination } from '@mui/material'
 import React, { useEffect } from 'react'
-import { LoadingPage } from '../../../ui'
+import { LoadingPage } from '../../ui'
 import { usePagination } from '../../hooks'
 import { useMovementsStore } from '../hooks/useMovementsStore'
 import { MovementsItem } from './'

@@ -5,6 +5,10 @@ export const uiSlice = createSlice({
     initialState: {
         isDrawerOpen: false,
         isModalOpen: false,
+        tutorial:{
+            isFirstLogin: true,
+            tutorialStep: 'account'
+        }
     },
     reducers: {
         onOpenDrawer: ( state ) => {
@@ -19,6 +23,12 @@ export const uiSlice = createSlice({
         onCloseModal: ( state ) => {
             state.isModalOpen = false;
         },
+        onSetTutorialStep: ( state, { payload } ) => {
+            state.tutorial.tutorialStep = payload;
+        },
+        onSetIsFirstLogin: ( state, { payload } ) => {
+            state.tutorial.isFirstLogin = payload;
+        }
     }
 });
 
@@ -28,4 +38,6 @@ export const {
     onCloseDrawer,
     onOpenModal,
     onCloseModal,
+    onSetIsFirstLogin,
+    onSetTutorialStep
  } = uiSlice.actions;
