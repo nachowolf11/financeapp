@@ -32,18 +32,6 @@ export const DrawerChildren = () => {
 
         <List sx={{flexGrow: 1}}>
 
-          <Link component={ RouterLink } onClick={onClick} color="inherit" to="/">
-            <ListCustomItem text="Home">
-              <Home fontSize="medium" color="secondary"/>
-            </ListCustomItem>
-          </Link>
-
-          <Link component={ RouterLink } onClick={onClick} color="inherit" to="/account">
-            <ListCustomItem text="Account">
-              <AccountBox fontSize="medium" color="secondary"/>
-            </ListCustomItem>
-          </Link>
-
           <Link component={ RouterLink } onClick={onClick} color="inherit" to="/movements">
             <ListCustomItem text="Movements">
               <Timeline fontSize="medium" color="secondary"/>
@@ -53,6 +41,12 @@ export const DrawerChildren = () => {
           <Link component={ RouterLink } onClick={onClick} color="inherit" to="/analysis">
             <ListCustomItem text="Analysis">
               <QueryStats fontSize="medium" color="secondary"/>
+            </ListCustomItem>
+          </Link>
+
+          <Link component={ RouterLink } onClick={onClick} color="inherit" to="/account">
+            <ListCustomItem text="Account">
+              <AccountBox fontSize="medium" color="secondary"/>
             </ListCustomItem>
           </Link>
 

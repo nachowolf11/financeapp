@@ -1,12 +1,12 @@
 import { Box, Toolbar } from "@mui/material"
 import { Navbar, SideBar, TutorialComponent } from "../components";
-import { useUiStore } from "../hooks";
+import { useAuthStore } from "../../auth/hooks";
 
 const drawerWidth = 220;
 
 export const FinanceLayout = ({children}) => {
 
-  const { isFirstLogin } = useUiStore();
+  const { user } = useAuthStore();
 
   return (
     <>
@@ -28,7 +28,7 @@ export const FinanceLayout = ({children}) => {
       </Box>
     </Box>
     {
-      isFirstLogin ? <TutorialComponent/> : ''
+      !user.first_login ? <TutorialComponent/> : ''
     }
     </>
   )

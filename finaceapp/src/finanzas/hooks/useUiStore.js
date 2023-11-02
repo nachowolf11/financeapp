@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onOpenDrawer, onCloseDrawer, onCloseModal, onOpenModal, onSetIsFirstLogin, onSetTutorialStep } from "../../store"
+import { onOpenDrawer, onCloseDrawer, onCloseModal, onOpenModal, onSetTutorialStep } from "../../store"
 import { useMovementsStore } from "./useMovementsStore";
 
 export const useUiStore = () => {
 
     const { isDrawerOpen, isModalOpen, tutorial } = useSelector( state => state.ui );
-    const { isFirstLogin, tutorialStep }  = tutorial;
+    const { tutorialStep }  = tutorial;
 
     const dispatch = useDispatch();
 
@@ -28,10 +28,6 @@ export const useUiStore = () => {
         dispatch( onCloseModal() );
     }
 
-    const setIsFirstLogin = ( payload ) => {
-        dispatch( onSetIsFirstLogin(payload) );
-    }
-
     const setTutorialStep = ( payload ) => {
         dispatch( onSetTutorialStep(payload) );
     }
@@ -40,7 +36,6 @@ export const useUiStore = () => {
         // Propiedades
         isDrawerOpen,
         isModalOpen,
-        isFirstLogin,
         tutorialStep,
 
         // Metodos
@@ -48,7 +43,6 @@ export const useUiStore = () => {
         closeDrawer,
         openModal,
         closeModal,
-        setIsFirstLogin,
         setTutorialStep,
     }
 }

@@ -13,7 +13,7 @@ export const useAuthStore = () => {
             const { data } = await financeApi.post('/auth',{ email, password })
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date',new Date().getTime());
-            dispatch( onLogin({ name: data.name, user_id: data.user_id }) );
+            dispatch( onLogin( data.user ) );
 
 
         } catch (error) {
@@ -70,27 +70,16 @@ export const useAuthStore = () => {
         try {
             dispatch(onSetLoading())
             const { data } = await financeApi.get('/users');
-            dispatch( onGetUser({
-                user_id: data.user_id,
-                name: data.name,
-                email: data.email,
-                cellphone: data.cellphone,
-                birthday: data.birthday,
-            }) );
+            dispatch( onGetUser(data.user) );
         } catch (error) {
             console.log('Error getting user.');
         }
     }
 
-    const startUpdateUser = async({ name, email, birthday, cellphone }) => {
+    const startUpdateUser = async( newData ) => {
         try {
-            const { data } = await financeApi.put('/users', { name, email, birthday, cellphone });
-            dispatch( onUpdateUser( {
-                name: data.name,
-                email: data.email,
-                cellphone: data.cellphone,
-                birthday: data.birthday,
-            } ) );
+            const { data } = await financeApi.put('/users', newData);
+            dispatch( onUpdateUser( data.user ) );
         } catch (error) {
             console.log('Error updating user.');
         }
