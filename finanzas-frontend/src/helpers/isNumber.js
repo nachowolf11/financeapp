@@ -1,1 +1,0 @@
-export const isNumber = /^[0-9]*$/;
